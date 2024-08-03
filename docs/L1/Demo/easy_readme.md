@@ -22,22 +22,12 @@
 
 ## 环境配置
 
-我们首先来为 Demo 创建一个可用的环境。
+我们已经在 `/root/share/pre_envs` 中配置好了预置环境 `icamp3_demo`
+
+可以通过如下指令进行激活：
 
 ```bash
-# 创建环境
-conda create -n demo python=3.10 -y
-# 激活环境
-conda activate demo
-# 安装 torch
-conda install pytorch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 pytorch-cuda=12.1 -c pytorch -c nvidia -y
-# 安装其他依赖
-pip install transformers==4.38
-pip install sentencepiece==0.1.99
-pip install einops==0.8.0
-pip install protobuf==5.27.2
-pip install accelerate==0.33.0
-pip install streamlit==1.37.0
+conda activate /root/share/pre_envs/icamp3_demo
 ```
 
 ## Cli Demo 部署 InternLM2-Chat-1.8B 模型
@@ -146,17 +136,10 @@ LMDeploy 已经支持了 InternLM-XComposer2 系列的部署，但值得注意�
 
 接下来，我们将演示如何使用 LMDeploy 部署 InternLM-XComposer2-VL-1.8B 模型。
 
-首先，我们激活环境并安装 LMDeploy 以及其他依赖。
+我们使用 LMDeploy 启动一个与 InternLM-XComposer2-VL-1.8B 模型交互的 Gradio 服务。
 
 ```bash
-conda activate demo
-pip install lmdeploy[all]==0.5.1
-pip install timm==1.0.7
-```
-
-接下来，我们使用 LMDeploy 启动一个与 InternLM-XComposer2-VL-1.8B 模型交互的 Gradio 服务。
-
-```bash
+conda activate /root/share/pre_envs/icamp3_demo
 lmdeploy serve gradio /share/new_models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-1_8b --cache-max-entry-count 0.1
 ```
 
@@ -173,7 +156,7 @@ LMDeploy 也已经支持了 InternVL2 系列模型的部署，让我们一起来
 我们可以通过下面的命令来启动 InternVL2-2B 模型的 Gradio 服务。
 
 ```bash
-conda activate demo
+conda activate /root/share/pre_envs/icamp3_demo
 lmdeploy serve gradio /share/new_models/OpenGVLab/InternVL2-2B --cache-max-entry-count 0.1
 ```
 
